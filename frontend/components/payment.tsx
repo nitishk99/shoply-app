@@ -31,7 +31,17 @@ function validateCVV(cvv: string) {
   return /^\d{3}$/.test(cvv);
 }
 
-export default function PaymentForm({ customer }: { customer: any }) {
+interface CustomerData {
+  fullName: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+}
+
+export default function PaymentForm({ customer }: { customer: CustomerData }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const items = useSelector((state: RootState) => state.cart.items);
@@ -81,7 +91,6 @@ export default function PaymentForm({ customer }: { customer: any }) {
 
     await sendOrderToApi(items, customerData, confirmationMessage, orderNumber);
 
-    // Send success email using the new triggerOrderEmail method
     await triggerOrderEmail({
       orderNumber,
       email: customerData.email,
@@ -106,7 +115,6 @@ export default function PaymentForm({ customer }: { customer: any }) {
   }
 
   async function handlePaymentFail(status: "declined" | "error") {
-    // Send minimal email for declined or error using the new triggerOrderEmail method
     await triggerOrderEmail({
       email: customer.email,
       status,
