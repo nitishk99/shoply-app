@@ -5,8 +5,8 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./src/routes/user.js";
-import orderRouter from './src/routes/Order.js';
-import mailRouter from './src/routes/Mail.js';
+import orderRouter from './src/routes/order.js';
+import mailRouter from './src/routes/mail.js';
 
 dotenv.config();
 
