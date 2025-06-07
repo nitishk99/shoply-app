@@ -14,12 +14,21 @@ import Paper from "@mui/material/Paper";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { fetchProductById } from "../../../../services/api";
+import Image from "next/image";
+
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: number | string;
+  image: string;
+}
 
 export default function ProductDetailPage() {
   const { id } = useParams();
   const router = useRouter();
   const dispatch = useDispatch();
-  const [product, setProduct] = useState<any>(null);
+  const [product, setProduct] = useState<Product | null>(null);
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
   const [size, setSize] = useState("S");
@@ -31,7 +40,7 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     fetchProductById(id as string)
-      .then((data) => setProduct(data))
+      .then((data: Product) => setProduct(data))
       .catch(() => setProduct(null));
   }, [id]);
 
@@ -87,10 +96,13 @@ export default function ProductDetailPage() {
   return (
     <Box display="flex" flexDirection={{ xs: "column", md: "row" }} gap={4} alignItems="center" p={4}>
       <Paper elevation={3} sx={{ p: 2 }}>
-        <img
+        <Image
           src={product.image}
           alt={product.title}
-          style={{ height: 320, width: 320, objectFit: "cover", borderRadius: 8 }}
+          width={320}
+          height={320}
+          style={{ objectFit: "cover", borderRadius: 8 }}
+          priority
         />
       </Paper>
       <Box>
