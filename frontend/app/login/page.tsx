@@ -29,7 +29,7 @@ export default function LoginPage() {
       } else {
         alert(data.message || "Login failed");
       }
-    } catch (error) {
+    } catch {
       alert("An error occurred. Please try again.");
     } finally {
       setLoading(false);
