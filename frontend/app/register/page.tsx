@@ -24,7 +24,7 @@ export default function RegisterPage() {
       } else {
         alert(data.message || "Registration failed");
       }
-    } catch (error) {
+    } catch {
       alert("An error occurred. Please try again.");
     } finally {
       setLoading(false);
