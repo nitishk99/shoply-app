@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../store/store";
 import {
@@ -76,7 +77,7 @@ export default function CheckoutPage() {
                   justifyContent="space-between"
                 >
                   <Box display="flex" alignItems="center" gap={2}>
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.name}
                       style={{
