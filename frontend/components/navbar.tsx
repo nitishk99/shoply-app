@@ -9,28 +9,21 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const cartCount = useSelector((state: RootState) =>
     state.cart.items.reduce((sum, item) => sum + item.quantity, 0)
   );
   const router = useRouter();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
 
-  const handleClose = () => {
-    setAnchorEl(null);
   };
 
   const handleLogout = () => {
-    // Optionally clear auth state here
     router.push("/login");
   };
 
