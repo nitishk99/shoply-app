@@ -19,8 +19,9 @@ export const Navbar = () => {
   );
   const router = useRouter();
 
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-
+  // Removed unused 'event' parameter
+  const handleMenu = () => {
+    // Implement menu logic if needed
   };
 
   const handleLogout = () => {
